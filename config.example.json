@@ -1,0 +1,6 @@
+{
+  "proxmox_url": "https://YOUR-PROXMOX-IP:8006",
+  "proxmox_token_id": "root@pam!autodoc",
+  "proxmox_token_secret": "REPLACE_ME",
+  "verify_tls": false
+}
