@@ -13,7 +13,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-         ssh -i /home/runner/.ssh/hugo_deploy root@192.168.0.56 <<'EOF'
+            ssh -i /home/runner/.ssh/hugo_deploy root@192.168.0.56 <<'EOF'
             set -euo pipefail
             cd /root/hugo-docs
             git fetch origin main
