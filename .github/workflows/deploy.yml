@@ -1,0 +1,25 @@
+name: Deploy Hugo Docs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, Linux, X64]
+    steps:
+      - name: Deploy to Hugo LXC over SSH
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i /root/.ssh/hugo_deploy root@192.168.0.56 <<'EOF'
+            set -euo pipefail
+            cd /root/hugo-docs
+            git fetch origin main
+            git reset --hard origin/main
+            systemctl start hugo-refresh.service
+            systemctl restart hugo-docs.service
+            systemctl --no-pager --full status hugo-refresh.service || true
+            systemctl --no-pager --full status hugo-docs.service || true
+          EOF
